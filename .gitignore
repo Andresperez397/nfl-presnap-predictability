@@ -8,4 +8,3 @@ renv/staging/
 app/rsconnect/
 logs/
 data/derived/
-.claude/
