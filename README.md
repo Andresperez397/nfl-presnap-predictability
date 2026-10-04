@@ -114,6 +114,7 @@ Rscript scripts/03_q2_team.R
 Rscript scripts/04_q3_efficiency.R
 Rscript scripts/05_app_data.R
 Rscript scripts/06_figures.R
+Rscript scripts/07_static_report.R  # needs pandoc
 Rscript tests/run_tests.R
 Rscript -e "shiny::runApp('app')"
 ```
