@@ -91,13 +91,12 @@ for (s in sort(unique(d$season))) {
 
 # Third down: tendencies and targets (descriptive, post-snap fields allowed here).
 third <- d[d$down == 3, ]
-third_tab <- do.call(rbind, lapply(split(third, list(third$team, third$season, third$dist_bucket), drop = TRUE),
-                                   function(x) data.frame(team = x$team[1], season = x$season[1],
-                                                          distance = as.character(x$dist_bucket[1]),
-                                                          n = nrow(x), pass_rate = mean(x$pass),
-                                                          league_expected = mean(x$p_league),
-                                                          epa = mean(x$epa, na.rm = TRUE),
-                                                          success = mean(x$success, na.rm = TRUE))))
+third_groups <- split(third, list(third$team, third$season, third$dist_bucket), drop = TRUE)
+third_tab <- do.call(rbind, lapply(third_groups, function(x) {
+  data.frame(team = x$team[1], season = x$season[1], distance = as.character(x$dist_bucket[1]),
+             n = nrow(x), pass_rate = mean(x$pass), league_expected = mean(x$p_league),
+             epa = mean(x$epa, na.rm = TRUE), success = mean(x$success, na.rm = TRUE))
+}))
 targets <- third |>
   filter(pass_attempt == 1, !is.na(receiver_player_id)) |>
   group_by(team, season, receiver = receiver_player_name) |>

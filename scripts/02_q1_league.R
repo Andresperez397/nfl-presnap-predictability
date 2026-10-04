@@ -44,8 +44,9 @@ write_json(tuning, file.path(OUT, "q1_tuning.json"), auto_unbox = TRUE, pretty =
 models <- SPECS$model
 by_season <- do.call(rbind, lapply(TEST_SEASONS, function(s) {
   x <- P[P$season == s, ]
-  do.call(rbind, lapply(models, function(m) data.frame(season = s, model = m, n = nrow(x),
-                                                        t(score(x$pass, x[[m]])))))
+  do.call(rbind, lapply(models, function(m) {
+    data.frame(season = s, model = m, n = nrow(x), t(score(x$pass, x[[m]])))
+  }))
 }))
 write.csv(by_season, file.path(OUT, "q1_by_season.csv"), row.names = FALSE)
 

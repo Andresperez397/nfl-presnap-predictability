@@ -48,7 +48,8 @@ and team models predict each week using only earlier weeks.
 FTN Data (2023 on), via nflverse (CC BY-SA 4.0). This app's data is released under CC BY-SA 4.0.
 Not affiliated with or endorsed by the NFL, nflverse or FTN.
 
-Code, methods and full results: [github.com/Andresperez397/nfl-presnap-predictability](https://github.com/Andresperez397/nfl-presnap-predictability)
+Code, methods and full results:
+[github.com/Andresperez397/nfl-presnap-predictability](https://github.com/Andresperez397/nfl-presnap-predictability)
 "
 
 ui <- page_navbar(
@@ -239,8 +240,10 @@ server <- function(input, output, session) {
   })
   output$reliability_text <- renderUI({
     r <- A$q2_reliability
-    p(class = "text-muted small", sprintf(
-      "Is the index a stable trait? Split-half reliability (odd vs even weeks) r = %.2f; same offense in consecutive seasons r = %.2f (n = %d). Index = average improvement in log loss when an offense's own earlier-week tendencies are added to the league model.",
+    p(class = "text-muted small", sprintf(paste(
+      "Is the index a stable trait? Split-half reliability (odd vs even weeks) r = %.2f;",
+      "same offense in consecutive seasons r = %.2f (n = %d). Index = average improvement in log loss",
+      "when an offense's own earlier-week tendencies are added to the league model."),
       r$split_half_r, r$year_to_year_r, r$year_to_year_n))
   })
 

@@ -56,7 +56,8 @@ wk <- read.csv(file.path(OUT, "q2_by_week.csv"))
 wk <- wk[wk$n >= 2000, ] # playoff weeks have few plays
 long <- rbind(data.frame(week = wk$week, model = "No pooling", gain = 1000 * (wk$league - wk$nopool)),
               data.frame(week = wk$week, model = "League recalibrated in season", gain = 1000 * (wk$league - wk$recal)),
-              data.frame(week = wk$week, model = "Partial pooling (team tendencies)", gain = 1000 * (wk$league - wk$shrunk)))
+              data.frame(week = wk$week, model = "Partial pooling (team tendencies)",
+                         gain = 1000 * (wk$league - wk$shrunk)))
 long$panel <- factor(ifelse(long$model == "No pooling", "B. Raw team rates (no pooling)",
                             "A. Shrunk team tendencies vs in-season recalibration"),
                      levels = c("A. Shrunk team tendencies vs in-season recalibration",
@@ -102,9 +103,11 @@ p5 <- ggplot(ts, aes(T_w, epa_w)) +
   geom_hline(yintercept = 0, colour = "grey85") + geom_vline(xintercept = 0, colour = "grey85") +
   geom_point(colour = GREY, alpha = 0.7) +
   geom_smooth(method = "lm", se = TRUE, colour = RED, fill = "#f3c3cb", formula = y ~ x) +
-  labs(x = "Tendency index (franchise and season effects removed)", y = "EPA per play (franchise and season effects removed)",
+  labs(x = "Tendency index (franchise and season effects removed)",
+       y = "EPA per play (franchise and season effects removed)",
        title = "More scoutable seasons were more efficient, not less (association only)",
-       subtitle = sprintf("%+.3f EPA/play per 10 millinats (95%% CI %+.3f to %+.3f), franchise and season fixed effects",
+       subtitle = sprintf(paste("%+.3f EPA/play per 10 millinats (95%% CI %+.3f to %+.3f),",
+                                "franchise and season fixed effects"),
                           q3$coef_epa_per_10_millinats, q3$ci[1], q3$ci[2]))
 save(p5, "fig5_efficiency.png", w = 7, h = 5)
 message("figures written to ", FIG)

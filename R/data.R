@@ -89,9 +89,10 @@ load_ftn <- function(seasons) {
 load_plays <- function(seasons = SEASONS) {
   pbp <- bind_rows(lapply(seasons, function(s) read_season("play_by_play", s, PBP_COLS)))
   stopifnot(!any(grepl(BETTING_PATTERN, names(pbp))))
-  log <- list(all_rows = nrow(pbp))
+  log <- new.env()
+  log$all_rows <- nrow(pbp)
   step <- function(d, keep, label) {
-    log[[label]] <<- sum(!keep, na.rm = TRUE) + sum(is.na(keep))
+    assign(label, sum(!keep, na.rm = TRUE) + sum(is.na(keep)), envir = log)
     d[!is.na(keep) & keep, , drop = FALSE]
   }
   d <- step(pbp, pbp$play_type %in% c("pass", "run"), "not_pass_or_run")
@@ -131,5 +132,6 @@ load_plays <- function(seasons = SEASONS) {
       personnel = ifelse(is.na(n_rb), NA, paste0(n_rb, n_te, ifelse(heavy_ol == 1, "+OL", "")))
     )
   log$analysis_rows <- nrow(d)
-  list(plays = d, log = log)
+  steps <- c("all_rows", "not_pass_or_run", "no_down_two_point", "aborted_snap", "fake_kick", "analysis_rows")
+  list(plays = d, log = mget(steps, envir = log))
 }
