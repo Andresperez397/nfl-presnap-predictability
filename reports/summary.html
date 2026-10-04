@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>NFL Pre-Snap Predictability: Project Summary</title>
+<style>
+  @page { size: Letter; margin: 0.55in 0.6in; }
+  :root { --ink:#0b0b0b; --ink2:#52514e; --rule:#e4e3df; --accent:#c8102e; }
+  body { font: 10.1pt/1.42 "Helvetica Neue", Arial, sans-serif; color: var(--ink); margin: 0; background:#fff; }
+  h1 { font-size: 17pt; margin: 0 0 2px; letter-spacing: -0.2px; }
+  .sub { color: var(--ink2); margin: 0 0 10px; }
+  h2 { font-size: 11pt; margin: 13px 0 4px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.6px; }
+  p { margin: 4px 0 6px; }
+  .meta { display:flex; flex-wrap:wrap; gap:4px 18px; font-size:9pt; color:var(--ink2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:5px 0; margin-bottom:8px; }
+  .meta a, .foot a { color: inherit; text-decoration: none; }
+  .grid { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  ul { margin: 4px 0 6px 16px; padding: 0; } li { margin: 2px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 9pt; margin: 4px 0; }
+  th, td { text-align: left; padding: 3px 6px; border-bottom: 1px solid var(--rule); }
+  th { color: var(--ink2); font-weight: 600; } td.n { text-align: right; font-variant-numeric: tabular-nums; }
+  tr.best td { font-weight: 700; }
+  img { width: 100%; display:block; }
+  .cap { font-size: 8.5pt; color: var(--ink2); margin-top: 2px; }
+  .pb { page-break-before: always; }
+  .foot { font-size: 8.3pt; color: var(--ink2); border-top:1px solid var(--rule); margin-top:10px; padding-top:5px; }
+</style></head><body>
+
+<h1>How predictable is an NFL offense before the snap?</h1>
+<p class="sub">Calling run vs pass on unseen seasons from pre-snap information, and measuring how much each offense gives away beyond league norms, with honest sample sizes.</p>
+<div class="meta"><span><b>Andres Perez</b>, M.S. Kinesiology (Biomechanics)</span><span>R · xgboost · lme4 · Shiny</span><span>Code: <a href="https://github.com/Andresperez397/nfl-presnap-predictability">github.com/Andresperez397/nfl-presnap-predictability</a></span><!--APP--></div>
+
+<div class="grid">
+<div>
+<h2>Data</h2>
+<p>342,254 offensive plays from 2016–2025 (nflverse play-by-play, participation and FTN charting). Inputs are things a defense sees before the snap: down, distance, field position, clock, score, timeouts, shotgun, no-huddle and personnel. Test seasons are 2019–2025.</p>
+<h2>Approach</h2>
+<ul>
+<li><b>Audit, then a frozen plan:</b> every field was classed as pre- or post-snap; a 2023 data-source change was handled; the plan was committed before modeling.</li>
+<li><b>Temporal validation:</b> train on earlier seasons, test on the next; team models predict each week from earlier weeks only.</li>
+<li><b>Shrinkage:</b> team tendencies are random effects (lme4) on top of the league model.</li>
+<li><b>Uncertainty:</b> game-cluster bootstrap, 1,000 resamples.</li>
+</ul>
+</div>
+<div>
+<h2>Findings</h2>
+<ul>
+<li><b>Three plays in four:</b> 74.5% accuracy (AUC 0.82) on unseen seasons, against 61.1% for always guessing pass and 62.5% for down and distance alone. The model is well calibrated.</li>
+<li><b>Shrink or lose:</b> a team's own tendencies, shrunk, improve week-ahead prediction by 8.2 millinats per play. Raw team rates are 109 worse than ignoring teams.</li>
+<li><b>A stable trait:</b> the tendency index has split-half r = 0.74 and year-to-year r = 0.43. The most scoutable offenses are run-heavy teams with mobile quarterbacks.</li>
+<li><b>Not a cost:</b> more scoutable seasons had higher EPA per play within franchise (an association).</li>
+<li><b>Formation matters:</b> charted pistol and backfield count add 33 millinats per play (2024–25).</li>
+</ul>
+</div>
+</div>
+
+<img src="figures/fig1_information_ladder.png" alt="Information ladder" style="width:84%;margin:0 auto">
+<p class="cap">Held-out log loss by information layer, pooled over 2019–2025, with 95% game-bootstrap intervals (most are narrower than the dots).</p>
+
+<div class="pb"></div>
+<h2>League model on unseen seasons (2019–2025)</h2>
+<table>
+<tr><th>Model</th><th class="n">Log loss</th><th class="n">Accuracy</th><th class="n">AUC</th><th class="n">Calibration slope</th></tr>
+<tr><td>Always the training pass rate</td><td class="n">0.668</td><td class="n">61.1%</td><td class="n">0.50</td><td class="n">—</td></tr>
+<tr><td>Down &amp; distance (13 situations)</td><td class="n">0.603</td><td class="n">62.5%</td><td class="n">0.68</td><td class="n">1.02</td></tr>
+<tr><td>+ full game state (gradient boosting)</td><td class="n">0.525</td><td class="n">71.1%</td><td class="n">0.79</td><td class="n">0.99</td></tr>
+<tr><td>+ shotgun, no-huddle</td><td class="n">0.501</td><td class="n">74.4%</td><td class="n">0.82</td><td class="n">0.97</td></tr>
+<tr class="best"><td>+ personnel</td><td class="n">0.499</td><td class="n">74.5%</td><td class="n">0.82</td><td class="n">0.98</td></tr>
+<tr><td>Same inputs, elastic net</td><td class="n">0.519</td><td class="n">73.6%</td><td class="n">0.81</td><td class="n">0.98</td></tr>
+</table>
+<p class="cap">242,387 test plays. Both learners were tuned on the latest training season only. Every step is significant (bootstrap CIs exclude zero); personnel adds 2.2 millinats per play.</p>
+
+<img src="figures/fig3_by_week.png" alt="Gain by week">
+<p class="cap">Week-ahead gain over the league model when a team's earlier weeks are used. A: shrunk tendencies (red) against an in-season league recalibration (blue). B: raw team rates, which are far worse early in the season.</p>
+
+<div class="grid">
+<div><img src="figures/fig5_efficiency.png" alt="Efficiency"><p class="cap">Within franchise: +0.015 EPA per play per 10 millinats of tendency index (95% CI +0.005 to +0.024). An association only.</p></div>
+<div>
+<h2>Limitations</h2>
+<p>Consistent formation detail exists only from 2022, so earlier seasons rely on the shotgun flag and personnel, and the main model understates predictability. Personnel uses roster positions. The efficiency link is confounded by quarterback and roster quality, game script and coaching. App intervals treat the league model as known. Scouting tables are descriptive; every predictive claim comes from held-out tests.</p>
+</div>
+</div>
+<p class="foot">Data: nflverse play-by-play (CC BY 4.0). Participation comes from NFL Next Gen Stats (through 2022) and FTN Data (2023 on), via nflverse (CC BY-SA 4.0). Derived results are CC BY-SA 4.0. Not affiliated with or endorsed by the NFL, nflverse or FTN.</p>
+</body></html>

@@ -41,9 +41,12 @@ POST_SNAP <- c("epa", "success", "qb_scramble", "sack", "pass_attempt", "receive
 # Franchise relocations, so a franchise keeps one code across seasons.
 FRANCHISE <- c(OAK = "LV", SD = "LAC", STL = "LA")
 
+# nflverse files carry R class metadata, so arrow rebuilds a data.table whenever that package is
+# loaded (xgboost loads it). Always return a plain data frame so indexing behaves the same.
 read_season <- function(kind, season, cols = NULL) {
   path <- file.path(RAW_DIR, sprintf("%s_%d.parquet", kind, season))
-  if (is.null(cols)) read_parquet(path) else read_parquet(path, col_select = all_of(cols))
+  x <- if (is.null(cols)) read_parquet(path) else read_parquet(path, col_select = all_of(cols))
+  as.data.frame(x)
 }
 
 # Count positions in a personnel string. Handles both formats:

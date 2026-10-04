@@ -1,0 +1,9 @@
+"comparison","model","reference","logloss_reduction","ci_lo","ci_hi","adds_information"
+"situation over constant","B1 situation","B0 constant",0.06545344828086,0.0641064158500685,0.0668223634861324,TRUE
+"game state over situation","B2 xgb","B1 situation",0.0780488207632573,0.0761714696478002,0.0798797623910448,TRUE
+"shotgun/no-huddle over game state","B3 xgb","B2 xgb",0.023775878099958,0.0225624050692184,0.0250212192586184,TRUE
+"personnel over shotgun/no-huddle","B4 xgb","B3 xgb",0.0021772352195859,0.00171509879385761,0.00260314802863129,TRUE
+"headline: B4 over situation baseline","B4 xgb","B1 situation",0.104001934082801,0.101710208651948,0.105954167787542,TRUE
+"xgb minus enet at B2 (positive = xgb better)","B2 xgb","B2 enet",0.0248600026207088,0.0238416860136581,0.0258639339974633,TRUE
+"xgb minus enet at B3 (positive = xgb better)","B3 xgb","B3 enet",0.0200255937313539,0.0191905556888508,0.0209126501676413,TRUE
+"xgb minus enet at B4 (positive = xgb better)","B4 xgb","B4 enet",0.0200551110321403,0.0192143098722683,0.0209535707914286,TRUE

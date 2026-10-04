@@ -1,0 +1,5 @@
+"comparison","worse","better","logloss_reduction_millinats","ci_lo","ci_hi","interval_above_zero"
+"team tendencies (shrunk) over league [decision rule]","league","shrunk",8.21281144727126,7.30132180647888,9.04841565737754,TRUE
+"shrinkage over no pooling [decision rule]","nopool","shrunk",117.287652003322,103.673481753491,131.218928053107,TRUE
+"in-season league recalibration over league [added check]","league","recal",0.527293564937414,0.294482330177649,0.746927534240982,TRUE
+"team tendencies over recalibrated league [added check]","recal","shrunk",7.68551788233385,6.85560553272245,8.49440696556297,TRUE

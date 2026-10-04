@@ -1,0 +1,65 @@
+---
+title: "NFL Pre-Snap Tendencies: static version"
+output:
+  html_document:
+    self_contained: true
+    theme: null
+    highlight: null
+    css: static.css
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(DT)
+A <- readRDS(file.path("..", "..", "app", "data", "app_data.rds"))
+pct <- function(x) ifelse(is.na(x), "", sprintf("%.0f%%", 100 * x))
+q1 <- A$q1_pooled
+lm4 <- q1[q1$model == A$league_model, ]
+b1 <- q1[q1$model == "B1 situation", ]
+q2 <- A$q2_comparisons
+tg <- q2[grepl("^team tendencies \\(shrunk\\)", q2$comparison), ]
+```
+
+<p class="lede">The no-install version of the <a href="https://github.com/Andresperez397/nfl-presnap-predictability">interactive app</a>. It has the same data and estimates, as searchable tables. Every rate is shown with its play count. Team rates are shrunk toward the league, cells with fewer than `r A$small_n` plays are flagged, and seasons run 2019–2025.</p>
+
+## Headline results (held-out tests)
+
+- **Run vs pass from pre-snap information:** on seasons the model never saw, it calls `r sprintf("%.1f%%", 100 * lm4$accuracy)` of plays correctly (AUC `r sprintf("%.2f", lm4$auc)`). Down and distance alone get `r sprintf("%.1f%%", 100 * b1$accuracy)`.
+- **Team tendencies:** a team's own earlier-week tendencies, shrunk toward the league, improve week-ahead prediction by `r sprintf("%.1f", tg$logloss_reduction_millinats)` millinats per play (95% interval `r sprintf("%.1f", tg$ci_lo)` to `r sprintf("%.1f", tg$ci_hi)`).
+- **Stability:** split-half reliability of the team tendency index is r = `r sprintf("%.2f", A$q2_reliability$split_half_r)`. The same offense in consecutive seasons gives r = `r sprintf("%.2f", A$q2_reliability$year_to_year_r)`.
+
+<img src="../figures/fig1_information_ladder.png" alt="Information ladder" width="100%">
+
+## Tendency index by offense and season
+
+Positive values mean the offense's own tendencies made it more predictable than league norms. The index is measured on held-out weeks.
+
+```{r}
+x <- A$index[order(-A$index$season, -A$index$T), ]
+datatable(data.frame(Season = x$season, Offense = x$team, `Index (millinats/play)` = round(x$T, 1),
+                     `95% interval` = sprintf("%.1f to %.1f", x$T - 1.96 * x$se, x$T + 1.96 * x$se),
+                     Plays = x$plays, check.names = FALSE),
+          rownames = FALSE, filter = "top", options = list(pageLength = 10))
+```
+
+## Scouting tables
+
+The **league expected** rate is what a league model trained on earlier seasons predicts for the same plays. The **team** rate is the shrunk estimate.
+
+```{r}
+views <- c(situation = "Down & distance", personnel = "Personnel", alignment = "Alignment")
+rows <- do.call(rbind, lapply(names(A$tables), function(k) {
+  tm <- strsplit(k, " ")[[1]]
+  do.call(rbind, lapply(names(views), function(v) {
+    t <- A$tables[[k]][[v]]
+    data.frame(Season = as.integer(tm[2]), Offense = tm[1], View = views[[v]], Group = t$group,
+               Plays = t$n, Raw = pct(t$raw), `League expected` = pct(t$league),
+               `Team (shrunk)` = pct(t$team), `95% interval` = paste0(pct(t$lo), "–", pct(t$hi)),
+               Flag = ifelse(t$small, "small sample", ""), check.names = FALSE)
+  }))
+}))
+rows <- rows[order(-rows$Season, rows$Offense), ]
+datatable(rows, rownames = FALSE, filter = "top", options = list(pageLength = 15))
+```
+
+<p class="foot">Data: nflverse play-by-play (CC BY 4.0). Participation comes from NFL Next Gen Stats (through 2022) and FTN Data (2023 on), via nflverse (CC BY-SA 4.0). This page's data is CC BY-SA 4.0. It is not affiliated with or endorsed by the NFL, nflverse or FTN. Built `r A$built`.</p>

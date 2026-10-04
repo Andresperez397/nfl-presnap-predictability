@@ -5,7 +5,7 @@ suppressPackageStartupMessages(library(jsonlite))
 out <- list()
 
 # 1. Completeness: every completed game on the official schedule has play-by-play, and vice versa.
-sched <- read_parquet(file.path(RAW_DIR, "games.parquet")) |>
+sched <- as.data.frame(read_parquet(file.path(RAW_DIR, "games.parquet"))) |>
   filter(season %in% SEASONS, !is.na(result))
 pbp_games <- bind_rows(lapply(SEASONS, function(s) {
   read_season("play_by_play", s, c("game_id", "season")) |> distinct()

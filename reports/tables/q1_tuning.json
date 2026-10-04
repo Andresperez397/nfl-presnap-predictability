@@ -1,0 +1,289 @@
+{
+  "2019": {
+    "B2 enet": {
+      "lambda": 0.00040551490727834,
+      "holdout_logloss": 0.547747855007759,
+      "lambda_index": 70,
+      "n_lambda": 84
+    },
+    "B2 xgb": {
+      "max_depth": 7,
+      "eta": 0.05,
+      "min_child_weight": 1,
+      "nrounds": 156,
+      "holdout_logloss": 0.524228271592967
+    },
+    "B3 enet": {
+      "lambda": 0.000451468926978783,
+      "holdout_logloss": 0.512613043217417,
+      "lambda_index": 75,
+      "n_lambda": 76
+    },
+    "B3 xgb": {
+      "max_depth": 7,
+      "eta": 0.05,
+      "min_child_weight": 20,
+      "nrounds": 193,
+      "holdout_logloss": 0.495560230876348
+    },
+    "B4 enet": {
+      "lambda": 0.00041136167180649,
+      "holdout_logloss": 0.510469485522337,
+      "lambda_index": 76,
+      "n_lambda": 76
+    },
+    "B4 xgb": {
+      "max_depth": 7,
+      "eta": 0.05,
+      "min_child_weight": 1,
+      "nrounds": 173,
+      "holdout_logloss": 0.491939457251781
+    }
+  },
+  "2020": {
+    "B2 enet": {
+      "lambda": 0.000205920797548085,
+      "holdout_logloss": 0.537711518553307,
+      "lambda_index": 77,
+      "n_lambda": 77
+    },
+    "B2 xgb": {
+      "max_depth": 7,
+      "eta": 0.05,
+      "min_child_weight": 1,
+      "nrounds": 198,
+      "holdout_logloss": 0.512742460874988
+    },
+    "B3 enet": {
+      "lambda": 0.00021102639932436,
+      "holdout_logloss": 0.507351225179915,
+      "lambda_index": 83,
+      "n_lambda": 83
+    },
+    "B3 xgb": {
+      "max_depth": 7,
+      "eta": 0.05,
+      "min_child_weight": 20,
+      "nrounds": 285,
+      "holdout_logloss": 0.488400795551596
+    },
+    "B4 enet": {
+      "lambda": 0.000368774625970682,
+      "holdout_logloss": 0.505406721317982,
+      "lambda_index": 77,
+      "n_lambda": 77
+    },
+    "B4 xgb": {
+      "max_depth": 5,
+      "eta": 0.05,
+      "min_child_weight": 1,
+      "nrounds": 493,
+      "holdout_logloss": 0.486261903251982
+    }
+  },
+  "2021": {
+    "B2 enet": {
+      "lambda": 0.000170084482354699,
+      "holdout_logloss": 0.554018357853853,
+      "lambda_index": 79,
+      "n_lambda": 83
+    },
+    "B2 xgb": {
+      "max_depth": 7,
+      "eta": 0.05,
+      "min_child_weight": 20,
+      "nrounds": 199,
+      "holdout_logloss": 0.529806899217017
+    },
+    "B3 enet": {
+      "lambda": 0.000275414236265612,
+      "holdout_logloss": 0.524259794280918,
+      "lambda_index": 80,
+      "n_lambda": 81
+    },
+    "B3 xgb": {
+      "max_depth": 5,
+      "eta": 0.05,
+      "min_child_weight": 20,
+      "nrounds": 373,
+      "holdout_logloss": 0.505446681354001
+    },
+    "B4 enet": {
+      "lambda": 0.000302266784300722,
+      "holdout_logloss": 0.521578631731759,
+      "lambda_index": 79,
+      "n_lambda": 86
+    },
+    "B4 xgb": {
+      "max_depth": 7,
+      "eta": 0.05,
+      "min_child_weight": 20,
+      "nrounds": 287,
+      "holdout_logloss": 0.501401094922751
+    }
+  },
+  "2022": {
+    "B2 enet": {
+      "lambda": 0.000126327957639511,
+      "holdout_logloss": 0.549679887809235,
+      "lambda_index": 82,
+      "n_lambda": 82
+    },
+    "B2 xgb": {
+      "max_depth": 7,
+      "eta": 0.05,
+      "min_child_weight": 20,
+      "nrounds": 279,
+      "holdout_logloss": 0.523120406645517
+    },
+    "B3 enet": {
+      "lambda": 0.000204808697548771,
+      "holdout_logloss": 0.513986801096085,
+      "lambda_index": 83,
+      "n_lambda": 84
+    },
+    "B3 xgb": {
+      "max_depth": 7,
+      "eta": 0.05,
+      "min_child_weight": 20,
+      "nrounds": 287,
+      "holdout_logloss": 0.492065490004586
+    },
+    "B4 enet": {
+      "lambda": 0.000204808697548771,
+      "holdout_logloss": 0.511283343606537,
+      "lambda_index": 83,
+      "n_lambda": 84
+    },
+    "B4 xgb": {
+      "max_depth": 7,
+      "eta": 0.05,
+      "min_child_weight": 20,
+      "nrounds": 341,
+      "holdout_logloss": 0.489302844132256
+    }
+  },
+  "2023": {
+    "B2 enet": {
+      "lambda": 0.00012532559802638,
+      "holdout_logloss": 0.557307623777116,
+      "lambda_index": 82,
+      "n_lambda": 82
+    },
+    "B2 xgb": {
+      "max_depth": 7,
+      "eta": 0.05,
+      "min_child_weight": 1,
+      "nrounds": 216,
+      "holdout_logloss": 0.532301102048898
+    },
+    "B3 enet": {
+      "lambda": 0.000224577646253645,
+      "holdout_logloss": 0.52878588688854,
+      "lambda_index": 82,
+      "n_lambda": 83
+    },
+    "B3 xgb": {
+      "max_depth": 7,
+      "eta": 0.05,
+      "min_child_weight": 20,
+      "nrounds": 226,
+      "holdout_logloss": 0.509173129532819
+    },
+    "B4 enet": {
+      "lambda": 0.000186448307329504,
+      "holdout_logloss": 0.526824846202655,
+      "lambda_index": 84,
+      "n_lambda": 85
+    },
+    "B4 xgb": {
+      "max_depth": 7,
+      "eta": 0.1,
+      "min_child_weight": 20,
+      "nrounds": 106,
+      "holdout_logloss": 0.507092453857243
+    }
+  },
+  "2024": {
+    "B2 enet": {
+      "lambda": 0.000124487554923009,
+      "holdout_logloss": 0.54898459669312,
+      "lambda_index": 82,
+      "n_lambda": 82
+    },
+    "B2 xgb": {
+      "max_depth": 7,
+      "eta": 0.05,
+      "min_child_weight": 20,
+      "nrounds": 372,
+      "holdout_logloss": 0.522721010275298
+    },
+    "B3 enet": {
+      "lambda": 0.000184223237693082,
+      "holdout_logloss": 0.521667177036258,
+      "lambda_index": 84,
+      "n_lambda": 85
+    },
+    "B3 xgb": {
+      "max_depth": 5,
+      "eta": 0.05,
+      "min_child_weight": 1,
+      "nrounds": 666,
+      "holdout_logloss": 0.500177200506779
+    },
+    "B4 enet": {
+      "lambda": 0.000243532278410123,
+      "holdout_logloss": 0.520529531111037,
+      "lambda_index": 81,
+      "n_lambda": 82
+    },
+    "B4 xgb": {
+      "max_depth": 5,
+      "eta": 0.05,
+      "min_child_weight": 20,
+      "nrounds": 953,
+      "holdout_logloss": 0.499193940261164
+    }
+  },
+  "2025": {
+    "B2 enet": {
+      "lambda": 0.000136455221672752,
+      "holdout_logloss": 0.547166827021093,
+      "lambda_index": 81,
+      "n_lambda": 81
+    },
+    "B2 xgb": {
+      "max_depth": 7,
+      "eta": 0.05,
+      "min_child_weight": 20,
+      "nrounds": 343,
+      "holdout_logloss": 0.522689035371435
+    },
+    "B3 enet": {
+      "lambda": 0.000182027129608438,
+      "holdout_logloss": 0.527752317584981,
+      "lambda_index": 84,
+      "n_lambda": 85
+    },
+    "B3 xgb": {
+      "max_depth": 7,
+      "eta": 0.05,
+      "min_child_weight": 20,
+      "nrounds": 311,
+      "holdout_logloss": 0.506325215607784
+    },
+    "B4 enet": {
+      "lambda": 0.000383149659526429,
+      "holdout_logloss": 0.526381991714621,
+      "lambda_index": 76,
+      "n_lambda": 77
+    },
+    "B4 xgb": {
+      "max_depth": 7,
+      "eta": 0.05,
+      "min_child_weight": 20,
+      "nrounds": 301,
+      "holdout_logloss": 0.504255063184361
+    }
+  }
+}

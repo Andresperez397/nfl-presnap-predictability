@@ -1,0 +1,24 @@
+{
+  "primary": {
+    "n_team_seasons": 224,
+    "n_franchises": 32,
+    "coef_epa_per_10_millinats": 0.0147612543475184,
+    "se": 0.00455191085946919,
+    "ci": [0.00547757094283315, 0.0240449377522036],
+    "p": 0.00283040435540853,
+    "raw_correlation": 0.204813518372414,
+    "sd_T": 12.6612320450687,
+    "sd_epa": 0.0901641020381962
+  },
+  "robustness": {
+    "dropped": ["ATL 2022", "BAL 2019", "CHI 2022", "IND 2024"],
+    "coef_without_extremes": 0.0181689989292368,
+    "se_without_extremes": 0.00708230520373383,
+    "spearman_two_way_demeaned": 0.252955370489003
+  },
+  "exploratory": {
+    "run_surprise_effect": 0.0970728860052476,
+    "pass_surprise_effect": 0.0787229386201028,
+    "n_plays": 228508
+  }
+}
