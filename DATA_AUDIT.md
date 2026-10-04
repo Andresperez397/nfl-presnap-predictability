@@ -61,7 +61,7 @@ The question is what an opponent can know before the snap, so only these are inp
 
 **Defensive alignment** (defenders in the box, defensive personnel) is also excluded. It is the defense's choice, made after seeing the offense, so it measures what the defense expects rather than what the offense gives away.
 
-**Betting columns:** play-by-play is read with an explicit column list that contains none. The schedule file has betting columns (`spread_line`, `total_line`, moneylines and odds), but only game ID, season and scores are read from it. A test checks that no column matching a betting pattern reaches the analysis table.
+**Columns read:** play-by-play is read with an explicit list of football columns, and nothing else in the file is loaded. Only game ID, season and scores are read from the schedule file. A test checks that no out-of-scope column reaches the analysis table.
 
 ## Source change in 2023 and how it is handled
 

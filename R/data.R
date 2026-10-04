@@ -11,8 +11,8 @@ suppressPackageStartupMessages({
 RAW_DIR <- file.path("data", "raw")
 SEASONS <- 2016:2025
 
-# Columns read from play-by-play. Anything not listed here is never loaded, so betting-derived
-# columns (spread_line, total_line, vegas_wp, ...) cannot enter the data by accident.
+# Columns read from play-by-play. Anything not listed here is never loaded, so columns outside the
+# scope of the question (market-line fields) cannot enter the data by accident.
 PBP_COLS <- c(
   "game_id", "play_id", "season", "season_type", "week", "game_date", "home_team", "away_team",
   "posteam", "defteam", "drive", "play_type", "qb_dropback", "qb_scramble", "aborted_play",
@@ -21,7 +21,7 @@ PBP_COLS <- c(
   "defteam_timeouts_remaining", "shotgun", "no_huddle", "epa", "success", "desc",
   "receiver_player_id", "receiver_player_name", "pass_attempt", "sack", "qb_spike", "qb_kneel"
 )
-BETTING_PATTERN <- "spread|total_line|vegas|moneyline|odds|over_under|_line$"
+OUT_OF_SCOPE_PATTERN <- "spread|total_line|vegas|moneyline|odds|over_under|_line$"
 
 # Inputs, grouped into the nested blocks used in ANALYSIS_PLAN.md.
 STATE_VARS <- c("down", "ydstogo", "yardline_100", "goal_to_go", "qtr", "half_seconds_remaining",
@@ -88,7 +88,7 @@ load_ftn <- function(seasons) {
 # Returns list(plays, log): the cleaned play table and a row-count log of each exclusion step.
 load_plays <- function(seasons = SEASONS) {
   pbp <- bind_rows(lapply(seasons, function(s) read_season("play_by_play", s, PBP_COLS)))
-  stopifnot(!any(grepl(BETTING_PATTERN, names(pbp))))
+  stopifnot(!any(grepl(OUT_OF_SCOPE_PATTERN, names(pbp))))
   log <- new.env()
   log$all_rows <- nrow(pbp)
   step <- function(d, keep, label) {

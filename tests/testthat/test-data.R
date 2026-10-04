@@ -8,9 +8,9 @@ test_that("personnel strings in both source formats parse to the same counts", {
   expect_equal(p$n_ol, c(5, 5, 6, 6, NA, NA))
 })
 
-test_that("no betting column is ever read", {
-  expect_false(any(grepl(BETTING_PATTERN, PBP_COLS)))
-  expect_true(all(grepl(BETTING_PATTERN, c("spread_line", "total_line", "vegas_wp", "away_moneyline"))))
+test_that("only in-scope football columns are ever read", {
+  expect_false(any(grepl(OUT_OF_SCOPE_PATTERN, PBP_COLS)))
+  expect_true(all(grepl(OUT_OF_SCOPE_PATTERN, c("spread_line", "total_line", "vegas_wp", "away_moneyline"))))
 })
 
 test_that("no post-snap field is a model input", {
@@ -27,7 +27,7 @@ test_that("cleaned plays follow the documented rules", {
   expect_false(any(is.na(d$down)))
   expect_true(all(d$aborted_play == 0))
   expect_false(any(grepl("Punt formation|Field Goal formation", d$desc, ignore.case = TRUE)))
-  expect_false(any(grepl(BETTING_PATTERN, names(d))))
+  expect_false(any(grepl(OUT_OF_SCOPE_PATTERN, names(d))))
   # Scrambles and sacks are called passes; designed runs are not.
   expect_true(all(d$pass[d$qb_scramble == 1] == 1))
   expect_true(all(d$pass[d$sack == 1] == 1))

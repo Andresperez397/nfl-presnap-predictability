@@ -17,8 +17,6 @@ out$schedule <- list(
   pbp_not_on_schedule = setdiff(pbp_games$game_id, sched$game_id),
   games_by_season = as.list(table(sched$season))
 )
-# The schedule file has betting columns; confirm we never carry them (only game_id/season read).
-out$schedule_betting_columns_present_but_unused <- grep(BETTING_PATTERN, names(sched), value = TRUE)
 
 # 2. Cleaning log and outcome.
 r <- load_plays()

@@ -17,7 +17,6 @@
       "2025": 285
     }
   },
-  "schedule_betting_columns_present_but_unused": ["away_moneyline", "home_moneyline", "spread_line", "away_spread_odds", "home_spread_odds", "total_line", "under_odds", "over_odds"],
   "exclusions": {
     "all_rows": 484254,
     "not_pass_or_run": 139434,

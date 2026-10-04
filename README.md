@@ -11,7 +11,7 @@ Using only what a defense can see before the snap, this project asks how well ru
 
 **1. Pre-snap information calls about three plays in four correctly on unseen seasons.**
 - Guessing "pass" every time is right 61.1% of the time, and down and distance alone get only to 62.5%.
-- The full pre-snap model reaches **74.5% accuracy** (95% CI 74.3–74.8%) and an AUC of 0.82, pooled over seven seasons it was never trained on.
+- The full pre-snap model reaches **74.5% accuracy** (95% CI 74.3–74.7%) and an AUC of 0.82, pooled over seven seasons it was never trained on.
 - Each season from 2019 to 2025 lands between 73.9% and 75.5%.
 - It is well calibrated: the slope is 0.98, and expected calibration error is 1.2 percentage points.
 
@@ -79,7 +79,7 @@ Each week was predicted using only that team's earlier weeks of the same season,
 4. **Uncertainty:** game-cluster bootstrap (1,000 resamples within each season) for every pooled comparison.
 5. **Shrinkage:** team tendencies use random intercepts (`lme4`) for team, team × situation, team × personnel group and team × alignment, with the league prediction as an offset.
 6. **Engineering:**
-   - 38 `testthat` checks, covering betting columns, post-snap fields, encoding fixed on training data only, held-out outcome corruption and the walk-forward check
+   - 38 `testthat` checks, covering out-of-scope columns, post-snap fields, encoding fixed on training data only, held-out outcome corruption and the walk-forward check
    - pinned packages (`renv.lock`)
    - data files pinned by SHA-256, because nflverse updates releases in place
 
@@ -127,5 +127,5 @@ R 4.5. Restore pinned packages with `renv::restore()`.
   - Participation from NFL Next Gen Stats through 2022 and FTN Data from 2023, via nflverse (CC BY-SA 4.0).
   - FTN charting, "FTN Data via nflverse" (CC BY-SA 4.0).
 - **License of this repository:** derived tables, figures and app data are CC BY-SA 4.0. Code is MIT. Raw data is not redistributed.
-- **No betting data:** betting-line columns in the source data are never read.
+- **Columns read:** only an explicit list of football columns is read from the source files.
 - **Affiliation:** not affiliated with or endorsed by the NFL, nflverse or FTN.
