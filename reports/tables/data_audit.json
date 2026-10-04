@@ -1,0 +1,201 @@
+{
+  "schedule": {
+    "scheduled_completed_games": 2761,
+    "pbp_games": 2761,
+    "scheduled_missing_from_pbp": [],
+    "pbp_not_on_schedule": [],
+    "games_by_season": {
+      "2016": 267,
+      "2017": 267,
+      "2018": 267,
+      "2019": 267,
+      "2020": 269,
+      "2021": 285,
+      "2022": 284,
+      "2023": 285,
+      "2024": 285,
+      "2025": 285
+    }
+  },
+  "schedule_betting_columns_present_but_unused": ["away_moneyline", "home_moneyline", "spread_line", "away_spread_odds", "home_spread_odds", "total_line", "under_odds", "over_odds"],
+  "exclusions": {
+    "all_rows": 484254,
+    "not_pass_or_run": 139434,
+    "no_down_two_point": 1276,
+    "aborted_snap": 1045,
+    "fake_kick": 245,
+    "analysis_rows": 342254
+  },
+  "outcome": {
+    "pass_rate_by_season": {
+      "2016": 0.6221,
+      "2017": 0.6085,
+      "2018": 0.6212,
+      "2019": 0.6203,
+      "2020": 0.6172,
+      "2021": 0.6154,
+      "2022": 0.6042,
+      "2023": 0.6147,
+      "2024": 0.6045,
+      "2025": 0.6042
+    },
+    "scrambles_counted_as_pass": 9293,
+    "sacks_counted_as_pass": 13121,
+    "dropback_missing": 0
+  },
+  "missing_inputs_all_seasons": {
+    "down": 0,
+    "ydstogo": 0,
+    "yardline_100": 0,
+    "goal_to_go": 0,
+    "qtr": 0,
+    "half_seconds_remaining": 0,
+    "game_seconds_remaining": 0,
+    "score_differential": 0,
+    "posteam_timeouts_remaining": 0,
+    "defteam_timeouts_remaining": 0,
+    "home": 0,
+    "shotgun": 0,
+    "no_huddle": 0,
+    "n_rb": 17,
+    "n_te": 17,
+    "n_wr": 17,
+    "heavy_ol": 17
+  },
+  "missing_ftn_2022_on": {
+    "motion": 0,
+    "backfield_n": 1059,
+    "qb_pistol": 109,
+    "hash_middle": 115,
+    "hash_left": 115
+  },
+  "ranges": {
+    "down": [1, 4],
+    "ydstogo": [1, 44],
+    "yardline_100": [1, 99],
+    "qtr": [1, 5],
+    "half_seconds_remaining": [0, 1800],
+    "game_seconds_remaining": [0, 3600],
+    "score_differential": [-56, 50],
+    "posteam_timeouts_remaining": [0, 3],
+    "defteam_timeouts_remaining": [0, 3]
+  },
+  "score_differential_is_offense_view": true,
+  "goal_to_go_distance_equals_yardline": 0.99995164643876,
+  "personnel_by_season": [
+    {
+      "season": 2016,
+      "p11": 0.5926,
+      "p12": 0.1695,
+      "p21": 0.0715,
+      "heavy_ol": 0.0567,
+      "sum_not_5_skill": 0.0027
+    },
+    {
+      "season": 2017,
+      "p11": 0.5889,
+      "p12": 0.1922,
+      "p21": 0.0797,
+      "heavy_ol": 0.0372,
+      "sum_not_5_skill": 0.0086
+    },
+    {
+      "season": 2018,
+      "p11": 0.6372,
+      "p12": 0.1696,
+      "p21": 0.0753,
+      "heavy_ol": 0.032,
+      "sum_not_5_skill": 0.0124
+    },
+    {
+      "season": 2019,
+      "p11": 0.5859,
+      "p12": 0.195,
+      "p21": 0.0759,
+      "heavy_ol": 0.0421,
+      "sum_not_5_skill": 0.0099
+    },
+    {
+      "season": 2020,
+      "p11": 0.5903,
+      "p12": 0.1899,
+      "p21": 0.0767,
+      "heavy_ol": 0.0275,
+      "sum_not_5_skill": 0.0105
+    },
+    {
+      "season": 2021,
+      "p11": 0.5972,
+      "p12": 0.2008,
+      "p21": 0.0672,
+      "heavy_ol": 0.0393,
+      "sum_not_5_skill": 0.0052
+    },
+    {
+      "season": 2022,
+      "p11": 0.621,
+      "p12": 0.1862,
+      "p21": 0.0791,
+      "heavy_ol": 0.0302,
+      "sum_not_5_skill": 0.0065
+    },
+    {
+      "season": 2023,
+      "p11": 0.6321,
+      "p12": 0.1945,
+      "p21": 0.0735,
+      "heavy_ol": 0.0264,
+      "sum_not_5_skill": 0.01
+    },
+    {
+      "season": 2024,
+      "p11": 0.6186,
+      "p12": 0.2213,
+      "p21": 0.0615,
+      "heavy_ol": 0.0297,
+      "sum_not_5_skill": 0.0021
+    },
+    {
+      "season": 2025,
+      "p11": 0.5722,
+      "p12": 0.219,
+      "p21": 0.0632,
+      "heavy_ol": 0.0545,
+      "sum_not_5_skill": 0.01
+    }
+  ],
+  "shotgun_vs_ftn": {
+    "n": 139203,
+    "agree": 0.9928,
+    "pistol_flagged_shotgun": 0.9957,
+    "ftn_qb_unknown": 485
+  },
+  "ftn_rates_by_season": [
+    {
+      "season": 2022,
+      "motion": 0.3741,
+      "backfield": 1.096,
+      "hash_middle": 0.1019
+    },
+    {
+      "season": 2023,
+      "motion": 0.4581,
+      "backfield": 1.0895,
+      "hash_middle": 0.0989
+    },
+    {
+      "season": 2024,
+      "motion": 0.4941,
+      "backfield": 1.102,
+      "hash_middle": 0.1002
+    },
+    {
+      "season": 2025,
+      "motion": 0.5523,
+      "backfield": 1.1316,
+      "hash_middle": 0.0945
+    }
+  ],
+  "plays_per_team_season": [860, 1330],
+  "teams": ["ARI", "ATL", "BAL", "BUF", "CAR", "CHI", "CIN", "CLE", "DAL", "DEN", "DET", "GB", "HOU", "IND", "JAX", "KC", "LA", "LAC", "LV", "MIA", "MIN", "NE", "NO", "NYG", "NYJ", "PHI", "PIT", "SEA", "SF", "TB", "TEN", "WAS"]
+}
