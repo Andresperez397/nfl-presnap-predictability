@@ -20,7 +20,12 @@ theme <- bs_theme(version = 5, bg = "#ffffff", fg = INK, primary = TEAM_COL,
                   base_font = font_collection("Inter", "Helvetica Neue", "Arial", "sans-serif")) |>
   bs_add_rules(".bslib-value-box .value-box-value { font-size: 1.6rem; }
                 .bslib-value-box .value-box-title { font-size: 0.85rem; }
-                .bslib-value-box { min-height: 0; }")
+                .bslib-value-box { min-height: 0; }
+                .bslib-value-box .value-box-area { padding: 0.6rem 1rem; }
+                .vb-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                          gap: 1rem; margin-bottom: 1rem; }
+                .vb-row .bslib-value-box { height: auto !important; min-height: 0 !important; margin: 0; }
+                @media (max-width: 575px) { .bslib-value-box .value-box-value { font-size: 1.15rem; } }")
 
 about_md <- "
 **What this is.** Pre-snap run/pass tendencies for every NFL offense, 2019–2025, built so a coach
@@ -58,6 +63,7 @@ ui <- page_navbar(
   fillable = FALSE,
   sidebar = sidebar(
     width = 260,
+    open = list(desktop = "open", mobile = "always-above"),
     selectInput("team", "Offense", A$teams, selected = "KC"),
     selectInput("season", "Season", SEASONS, selected = SEASONS[1]),
     helpText(sprintf("Team rates are shrunk toward the league; cells with fewer than %d plays are flagged.",
@@ -65,12 +71,13 @@ ui <- page_navbar(
   ),
   nav_panel(
     "Scout",
-    layout_columns(
-      fill = FALSE,
+    div(
+      class = "vb-row",
       value_box("Plays", textOutput("vb_plays"), theme = "light"),
       value_box("Pass rate", textOutput("vb_pass"), theme = "light"),
       value_box("League expected, same plays", textOutput("vb_league"), theme = "light"),
-      value_box("Tendency index", textOutput("vb_index"), theme = "light")
+      value_box("Tendency index", textOutput("vb_index"), p(class = "small mb-0", "millinats per play, ±95%"),
+                theme = "light")
     ),
     radioButtons("view", NULL, inline = TRUE,
                  c("Down & distance" = "situation", "Personnel" = "personnel",
@@ -91,8 +98,8 @@ ui <- page_navbar(
   ),
   nav_panel(
     "Predictability",
-    layout_columns(
-      fill = FALSE,
+    div(
+      class = "vb-row",
       value_box("Accuracy, unseen seasons", textOutput("vb_acc"), theme = "light"),
       value_box("Down & distance alone", textOutput("vb_acc_b1"), theme = "light"),
       value_box("Team tendencies add", textOutput("vb_team_gain"), theme = "light")
