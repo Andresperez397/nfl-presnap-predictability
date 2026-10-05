@@ -1,5 +1,7 @@
 # How predictable is an NFL offense before the snap?
 
+[![tests](https://github.com/Andresperez397/nfl-presnap-predictability/actions/workflows/ci.yml/badge.svg)](https://github.com/Andresperez397/nfl-presnap-predictability/actions/workflows/ci.yml)
+
 Using only what a defense can see before the snap, this project asks how well run vs pass can be called for a season the model has never seen. It also asks whether each offense gives away more than league norms would suggest, once small samples are handled honestly. It is built for a team's coaching and analytics staff: the same tools serve opponent scouting (what does this offense give away?) and self-scouting (what are we giving away?). The scouting side is an R Shiny app that shows every rate with its play count, shrinks small samples, and flags them.
 
 **Live app:** [andresperez397-nfl-presnap-predictability.share.connect.posit.cloud](https://andresperez397-nfl-presnap-predictability.share.connect.posit.cloud) · **No-install version:** [static HTML](reports/static/nfl-presnap-static.html) (download and open) · **Two-page summary:** [PDF](reports/NFL%20Pre-Snap%20Predictability%20-%20Summary.pdf)
@@ -79,7 +81,7 @@ Each week was predicted using only that team's earlier weeks of the same season,
 4. **Uncertainty:** game-cluster bootstrap (1,000 resamples within each season) for every pooled comparison.
 5. **Shrinkage:** team tendencies use random intercepts (`lme4`) for team, team × situation, team × personnel group and team × alignment, with the league prediction as an offset.
 6. **Engineering:**
-   - 38 `testthat` checks, covering out-of-scope columns, post-snap fields, encoding fixed on training data only, held-out outcome corruption and the walk-forward check
+   - 38 `testthat` checks, covering out-of-scope columns, post-snap fields, encoding fixed on training data only, held-out outcome corruption and the walk-forward check. CI runs them on every push with the pinned packages; the one block that reads the raw nflverse files skips there.
    - pinned packages (`renv.lock`)
    - data files pinned by SHA-256, because nflverse updates releases in place
 
