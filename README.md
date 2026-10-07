@@ -2,6 +2,14 @@
 
 [![tests](https://github.com/Andresperez397/nfl-presnap-predictability/actions/workflows/ci.yml/badge.svg)](https://github.com/Andresperez397/nfl-presnap-predictability/actions/workflows/ci.yml)
 
+## At a glance
+
+- **Question:** How predictable is an NFL offense before the snap, and how much does each offense give away beyond league norms?
+- **Answer:** Pre-snap information calls run versus pass correctly 74.5% of the time on seasons the model never saw (guessing pass is right 61.1%). Team tendencies improve that only when shrunk toward the league: raw team rates were worse than ignoring teams.
+- **Why it matters:** It is the logic behind a scouting report that doesn't over-read small samples, and the same tools serve opponent scouting and self-scouting.
+- **Start here:** [Live app](https://andresperez397-nfl-presnap-predictability.share.connect.posit.cloud) · [two-page summary](reports/NFL%20Pre-Snap%20Predictability%20-%20Summary.pdf)
+
+
 Using only what a defense can see before the snap, this project asks how well run vs pass can be called for a season the model has never seen. It also asks whether each offense gives away more than league norms would suggest, once small samples are handled honestly. It is built for a team's coaching and analytics staff: the same tools serve opponent scouting (what does this offense give away?) and self-scouting (what are we giving away?). The scouting side is an R Shiny app that shows every rate with its play count, shrinks small samples, and flags them.
 
 **Live app:** [andresperez397-nfl-presnap-predictability.share.connect.posit.cloud](https://andresperez397-nfl-presnap-predictability.share.connect.posit.cloud) · **No-install version:** [static HTML](reports/static/nfl-presnap-static.html) (download and open) · **Two-page summary:** [PDF](reports/NFL%20Pre-Snap%20Predictability%20-%20Summary.pdf)
